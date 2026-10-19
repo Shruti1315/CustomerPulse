@@ -1,0 +1,5 @@
+import Campaign from '../models/Campaign.js';
+import {asyncHandler} from '../utils/asyncHandler.js';
+export const list=asyncHandler(async(req,res)=>res.json({success:true,data:await Campaign.find({owner:req.user._id}).sort({createdAt:-1}).lean()}));
+export const create=asyncHandler(async(req,res)=>{const {name,segment,message}=req.body;if(!name||!segment||!message)return res.status(400).json({success:false,message:'Name, segment and message are required'});const data=await Campaign.create({owner:req.user._id,name,segment,message});res.status(201).json({success:true,data});});
+export const updateStatus=asyncHandler(async(req,res)=>{if(!['Draft','Ready','Sent'].includes(req.body.status))return res.status(400).json({success:false,message:'Invalid status'});const c=await Campaign.findOneAndUpdate({_id:req.params.id,owner:req.user._id},{$set:{status:req.body.status}},{new:true,runValidators:true});if(!c)return res.status(404).json({success:false,message:'Campaign not found'});res.json({success:true,data:c});});

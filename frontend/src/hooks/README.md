@@ -1,0 +1,1 @@
+Place reusable React hooks here as the application grows. API access is currently centralized in services/api.js and authentication state in context/AuthContext.jsx.

@@ -1,0 +1,1 @@
+Main route-level pages: Dashboard, Customers, Purchases, RFM Analysis, Campaigns and Reports.

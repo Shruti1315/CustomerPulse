@@ -1,0 +1,1 @@
+Shared UI components live here. Current components: Loading.jsx and StatCard.jsx.

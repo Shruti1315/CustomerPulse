@@ -1,0 +1,1 @@
+Shared page layouts live here. AppLayout.jsx contains the authenticated navigation shell.

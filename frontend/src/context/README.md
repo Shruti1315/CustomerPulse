@@ -1,0 +1,1 @@
+React context providers live here. AuthContext.jsx manages login/register/logout state.

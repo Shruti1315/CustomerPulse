@@ -1,0 +1,1 @@
+Request validation is performed at the service boundary in this MVP. For larger deployments, add schema-based request validation (for example, express-validator or Zod) here and keep validation schemas separate from controllers.

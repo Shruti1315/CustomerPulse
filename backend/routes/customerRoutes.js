@@ -1,0 +1,2 @@
+import {Router} from 'express'; import {list,create,update,remove} from '../controllers/customerController.js';
+const router=Router(); router.route('/').get(list).post(create); router.route('/:id').put(update).delete(remove); export default router;
