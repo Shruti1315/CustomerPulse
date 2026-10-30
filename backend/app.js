@@ -10,7 +10,20 @@ import analyticsRoutes from './routes/analyticsRoutes.js';
 import campaignRoutes from './routes/campaignRoutes.js';
 import {protect} from './middleware/authMiddleware.js';
 import {notFound,errorHandler} from './middleware/errorMiddleware.js';
+import { connectDB } from './config/db.js';
 const app=express();
+app.use(async (req, res, next) => {
+  try {
+    if (!process.env.JWT_SECRET || process.env.JWT_SECRET.length < 24) {
+      throw new Error('JWT_SECRET must be at least 24 characters');
+    }
+
+    await connectDB();
+    next();
+  } catch (error) {
+    next(error);
+  }
+});
 app.use(helmet());
 app.use(cors({origin:process.env.CLIENT_URL||'http://localhost:5173'}));
 app.use(express.json({limit:'1mb'}));
